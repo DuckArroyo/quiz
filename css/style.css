@@ -58,18 +58,49 @@ body.wrong {
   margin: 20px 0;
 }
 
-/*!Rafael styles*/
-/*Header*/
-.nav {
-  background-color: black;
-  height: 100px;
+.btn {
+  --hue: var(--hue-neutral);
+  border: 1px solid hsl(var(--hue), 100%, 30%);
+  background-color: hsl(var(--hue), 100%, 45%);
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  outline: none;
+}
+
+.btn:hover {
+  border-color: black;
+}
+
+.btn.correct {
+  --hue: var(--hue-correct);
+  color: black;
+}
+
+.btn.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.start-btn,
+.submit-btn {
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+.controls {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
-.nav h1,
-h2 {
+.hide {
+  display: none;
+}
+
+/*!Rafael styles*/
+/*Header*/
+#home-btn {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   border: 2px solid rgb(238, 235, 54);
@@ -77,16 +108,34 @@ h2 {
   color: rgb(238, 235, 54);
   font-size: 36px;
   font-family: "Chakra Petch", "sans-serif";
-}
-.nav h2 {
-  border: 1px solid rgb(238, 235, 54);
-  padding: 5px 12px;
-  font-size: 30px;
+  position: fixed;
+  top: 5px;
+  left: 5px;
 }
 
-/*Footer*/
+#scores-btn {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgb(238, 235, 54);
+  padding: 5px 12px;
+  color: rgb(238, 235, 54);
+  font-size: 30px;
+  position: fixed;
+  top: 14px;
+  right: 50px;
+}
+
+#home-btn:hover {
+  border-color: black;
+}
+
+#scores-btn:hover {
+  border-color: black;
+}
+/*!Footer - help my duck logo disappeared*/
 footer {
-  background-image: url("./backgrounds/DuckLogo.png");
+  background-image: url("/Backgrounds/DuckLogo.png");
+  height: 100px;
   position: fixed;
   bottom: 5px;
   right: 5px;
