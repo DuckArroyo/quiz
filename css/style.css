@@ -1,0 +1,93 @@
+/*TODO Background - visual feedback*/
+/*TODO Card - style*/
+/*TODO Buttons - style*/
+
+/*Global settings*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Chakra Petch", "sans-serif";
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Chakra Petch", "sans-serif";
+}
+
+:root {
+  --hue-neutral: 200;
+  --hue-wrong: 0;
+  --hue-correct: 145;
+}
+
+body {
+  --hue: var(--hue-neutral);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(var(--hue), 100%, 20%);
+}
+
+body.correct {
+  --hue: var(--hue-correct);
+}
+
+body.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.container {
+  width: 600px;
+  max-width: 80%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 20px 5px;
+}
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 5px;
+  margin: 20px 0;
+}
+
+/*!Rafael styles*/
+/*Header*/
+.nav {
+  background-color: black;
+  height: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav h1,
+h2 {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  border: 2px solid rgb(238, 235, 54);
+  padding: 5px 15px;
+  color: rgb(238, 235, 54);
+  font-size: 36px;
+  font-family: "Chakra Petch", "sans-serif";
+}
+.nav h2 {
+  border: 1px solid rgb(238, 235, 54);
+  padding: 5px 12px;
+  font-size: 30px;
+}
+
+/*Footer*/
+footer {
+  background-image: url("./backgrounds/DuckLogo.png");
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
