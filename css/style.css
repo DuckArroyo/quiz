@@ -134,7 +134,7 @@ body.wrong {
 }
 /*!Footer - help my duck logo disappeared*/
 footer {
-  background-image: url("/Backgrounds/DuckLogo.png");
+  background-image: src("./Backgrounds/DuckLogo.png");
   height: 100px;
   position: fixed;
   bottom: 5px;
