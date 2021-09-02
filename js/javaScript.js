@@ -15,7 +15,7 @@ var scoreGame = 0;
 
 let shuffledQuestions, currentQuestionIndex
 
-
+var playerName = window.prompt("What is your name?");
 startButton.addEventListener('click', startQuiz)
 startButton.addEventListener('click', startTimer)
 submitButton.addEventListener('click', () => {
@@ -30,6 +30,7 @@ function startQuiz() {
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
+    //!I think the call for function startTimer() goes here
 }
 
 //TODO Timer
@@ -129,17 +130,17 @@ var getPlayerName = function () {
 }
 
 
-var playerInfo = {
-    name = getPlayerName(),
-    score = scoreGame
-}
+// var playerInfo = {
+//    name = "",
+//    score = scoreGame
+// }
 
 //TODO Now add this info to Local Storage
 // var score = []
-// localStorage.setItem('storedScore', JSON.stringify(playerInfo))
+//localStorage.setItem('storedScore', JSON.stringify(playerInfo))
 
-// localStorage.getItem('storedScore', JSON.parse(playerInfo))
-
+//localStorage.getItem('storedScore', JSON.parse(playerInfo))
+console.log("playerInfo");
 //TODO when correct answer is selected add 1 point
 // var score = function addToScore () {
 //     if (correct === true) {
@@ -158,31 +159,31 @@ function clearStatusClass(element) {
 
 const questions = [
 {
-    question: 'question 1  goes here',
+    question: 'Is JavaScript easy?',
     answers: [
-        {text: 'correct 1  answer', correct: true }, //true is specific to the correct answer
-        {text: 'incorrect 2 answer', correct: false }, 
-        {text: 'incorrect 3  answer', correct: false },
-        {text: 'incorrect 4 answer', correct: false }
+        {text: 'Yes', correct: true }, //true is specific to the correct answer
+        {text: 'NOO!', correct: false }, 
+        {text: 'Go Away!!', correct: false },
+        {text: 'I will shank you', correct: false }
     ]
 },
 
 {
-    question: 'question 2 goes here',
+    question: 'How do you call a function?',
     answers: [
-        {text: 'correct answer', correct: true }, //true is specific to the correct answer
-        {text: 'incorrect answer1', correct: false }, 
-        {text: 'incorrect answer2', correct: false },
-        {text: 'incorrect answer3', correct: false }
+        {text: 'function nameOfFunction()', correct: true }, //true is specific to the correct answer
+        {text: '1-800-Function', correct: false }, 
+        {text: 'Ask a BSC', correct: false },
+        {text: 'nameOfFunction()', correct: false }
     ]
 },
 {
-    question: 'quesiton 3  goes here',
+    question: 'Types of data',
     answers: [
-        {text: 'correct answer', correct: true }, //true is specific to the correct answer
-        {text: 'incorrect answer 4', correct: false }, 
-        {text: 'incorrect answer 5', correct: false },
-        {text: 'incorrect answer 6', correct: false }
+        {text: 'Strings, Boleans, Intergers', correct: true }, //true is specific to the correct answer
+        {text: 'Nodes, Objects, Whole numbers', correct: false }, 
+        {text: '[], {}, ()', correct: false },
+        {text: '( i = 0; i < x.lenght; i-- )', correct: false }
     ]
 }
 ]
