@@ -138,7 +138,7 @@ body.wrong {
 #scores-btn:hover {
   border-color: black;
 }
-/*!Footer - help my duck logo disappeared*/
+
 footer {
   background-image: url("../Backgrounds/DuckLogo.png");
   height: 150px;

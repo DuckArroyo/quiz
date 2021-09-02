@@ -12,18 +12,24 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 var scoreGame = 0;
+var interval;
+var timer;
 
 let shuffledQuestions, currentQuestionIndex
 
 
 startButton.addEventListener('click', startQuiz)
-startButton.addEventListener('click', startTimer)
 submitButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
 
 function startQuiz() {
+
+    var fiveMinutes = 60 * 5,
+    display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+
     console.log('Started')
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5 )
@@ -32,10 +38,10 @@ function startQuiz() {
     setNextQuestion()
 }
 
-//TODO Timer
 function startTimer(duration, display) {
+    console.log(minutes, seconds)
     var timer = duration, minutes, seconds;
-    setInterval(function () {
+    interval = setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -49,13 +55,6 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
-
-window.onload = function () {
-    var fiveMinutes = 60 * 5,
-        display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
-};
-//TODO End timer
 
 function setNextQuestion () {
     console.log('Next Question')
@@ -71,7 +70,11 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+            scoreGame++
+        } else {
+            // timer -= 5 //! This is not working
         }
+
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
       }  
@@ -98,12 +101,13 @@ function selectAnswer(e) {
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
     submitButton.classList.remove('hide')
     } else {
+        clearInterval(interval)
         alert('Your score is: + score amount')//!Score alert
-        getPlayerName ()//!Get player's name
+        var x = getPlayerName ()//!Get player's name
+        highScore(x)
         alert('You have completed the quiz, if you would like to do it again, hit restart!')
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
-
     }
 }
 
@@ -116,7 +120,6 @@ function setStatusClass(element, correct) {
     }
 }
 
-//todo get user ID
 var getPlayerName = function () {
     var name = "";
     //*************/
@@ -128,28 +131,16 @@ var getPlayerName = function () {
     return name;
 }
 
+var highScore = function (name) {
+    var playerInfo = {
+        name: name,
+        score: scoreGame
+    }
 
-var playerInfo = {
-    name = getPlayerName(),
-    score = scoreGame
+    var score = JSON.parse(localStorage.getItem('storedScore')) || []
+    score.push(playerInfo)
+    localStorage.setItem('storedScore', JSON.stringify(score))
 }
-
-//TODO Now add this info to Local Storage
-// var score = []
-// localStorage.setItem('storedScore', JSON.stringify(playerInfo))
-
-// localStorage.getItem('storedScore', JSON.parse(playerInfo))
-
-//TODO when correct answer is selected add 1 point
-// var score = function addToScore () {
-//     if (correct === true) {
-//         score++
-//     } else (
-//         minusTimer--
-//     )
-    
-// console.log(score)
-// }
 
 function clearStatusClass(element) {
     element.classList.remove('correct')
