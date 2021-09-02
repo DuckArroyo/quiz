@@ -98,6 +98,12 @@ body.wrong {
   display: none;
 }
 
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*!Rafael styles*/
 /*Header*/
 #home-btn {
@@ -134,8 +140,11 @@ body.wrong {
 }
 /*!Footer - help my duck logo disappeared*/
 footer {
-  background-image: src("./Backgrounds/DuckLogo.png");
-  height: 100px;
+  background-image: url("../Backgrounds/DuckLogo.png");
+  height: 150px;
+  width: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
   position: fixed;
   bottom: 5px;
   right: 5px;

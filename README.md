@@ -1,4 +1,5 @@
 # challenge4
+
 Quizeenater
 
 Challenge - user wwants a quiz to test their JavaScript fundamentals!
@@ -7,6 +8,7 @@ Action items
 *Create HTML, CSS, JavaScript
 *create layout
 create framework for game
+
 - clock starts when question starts
 - question requires input - validate input
 - input needs to be verified correct or incorrect
@@ -17,9 +19,9 @@ Requirements from Acceptance Criteria
 1. Start button
 2. On Start timer starts and question displays.
 3. User enters input
-4.    - not requested, provide visual feedback Correct/Incorrect
-5.    When question is answered correctly - add to score
-6.    When question is answered incorrectly - remove time from clock
+4. - not requested, provide visual feedback Correct/Incorrect
+5. When question is answered correctly - add to score
+6. When question is answered incorrectly - remove time from clock
 7. User provides initials for score
 
 #Acceptance Criteria
@@ -34,3 +36,8 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
+
+#EXTERNAL SOURCE USED FOR THIS PROJECT
+I used this video tutorial to develop the code. The creator also provides the code in a repo, however, I typed my code along to the video.
+https://youtu.be/riDzcEQbX6k
+https://github.com/WebDevSimplified/JavaScript-Quiz-App
