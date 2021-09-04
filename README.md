@@ -1,5 +1,10 @@
 # challenge4
 
+#EXTERNAL SOURCE USED FOR THIS PROJECT
+I used this video tutorial to develop the code. The creator also provides the code in a repo, however, I typed my code along to the video and then modified it to meet the project requirements
+https://youtu.be/riDzcEQbX6k
+https://github.com/WebDevSimplified/JavaScript-Quiz-App
+
 Quizeenater
 
 Challenge - user wwants a quiz to test their JavaScript fundamentals!
@@ -36,8 +41,3 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
-
-#EXTERNAL SOURCE USED FOR THIS PROJECT
-I used this video tutorial to develop the code. The creator also provides the code in a repo, however, I typed my code along to the video.
-https://youtu.be/riDzcEQbX6k
-https://github.com/WebDevSimplified/JavaScript-Quiz-App
