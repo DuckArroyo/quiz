@@ -100,7 +100,7 @@ function selectAnswer(e) {
     submitButton.classList.remove("hide");
   } else {
     clearInterval(interval);
-    alert("Your score is: + score amount"); //!Score alert
+    alert("Your score is: " + scoreGame); //!Score alert
     var x = getPlayerName(); //!Get player's name
     highScore(x);
     alert(
@@ -131,17 +131,6 @@ var getPlayerName = function () {
   return name;
 };
 
-var highScore = function (name) {
-  var playerInfo = {
-    name: name,
-    score: scoreGame,
-  };
-
-  var score = JSON.parse(localStorage.getItem("storedScore")) || [];
-  score.push(playerInfo);
-  localStorage.setItem("storedScore", JSON.stringify(score));
-};
-
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
@@ -149,31 +138,31 @@ function clearStatusClass(element) {
 
 const questions = [
   {
-    question: "question 1  goes here",
+    question: "Is JavaScript easy?",
     answers: [
-      { text: "correct 1  answer", correct: true }, //true is specific to the correct answer
-      { text: "incorrect 2 answer", correct: false },
-      { text: "incorrect 3  answer", correct: false },
-      { text: "incorrect 4 answer", correct: false },
+      { text: "Yes", correct: true }, //true is specific to the correct answer
+      { text: "NOO!", correct: false },
+      { text: "Go Away!!", correct: false },
+      { text: "I will shank you", correct: false },
     ],
   },
 
   {
-    question: "question 2 goes here",
+    question: "How do you call a function?",
     answers: [
-      { text: "correct answer", correct: true }, //true is specific to the correct answer
-      { text: "incorrect answer1", correct: false },
-      { text: "incorrect answer2", correct: false },
-      { text: "incorrect answer3", correct: false },
+      { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
+      { text: "1-800-Function", correct: false },
+      { text: "Ask a BSC", correct: false },
+      { text: "nameOfFunction()", correct: false },
     ],
   },
   {
-    question: "quesiton 3  goes here",
+    question: "Types of data",
     answers: [
-      { text: "correct answer", correct: true }, //true is specific to the correct answer
-      { text: "incorrect answer 4", correct: false },
-      { text: "incorrect answer 5", correct: false },
-      { text: "incorrect answer 6", correct: false },
+      { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
+      { text: "Nodes, Objects, Whole numbers", correct: false },
+      { text: "[], {}, ()", correct: false },
+      { text: "( i = 0; i < x.lenght; i-- )", correct: false },
     ],
   },
 ];
