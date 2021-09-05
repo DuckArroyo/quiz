@@ -2,7 +2,6 @@
 // use of e.target https://developer.mozilla.org/en-US/docs/Web/API/Event/target
 //Timer https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
 
-const refreshQuizzeenater = document.getElementById("home-btn");
 const startButton = document.getElementById("start-btn");
 const submitButton = document.getElementById("submit-btn");
 const scoresButton = document.getElementById("scores-btn");
@@ -32,7 +31,6 @@ submitButton.addEventListener("click", () => {
 });
 scoresButton.addEventListener("click", scoresDisplay);
 returnButton.addEventListener("click", rtnQuizzeenater);
-refreshQuizzeenater.addEventListener("click", refreshQuizzeenater);
 
 function startQuiz() {
   var threeMinutes = 60 * 3,
@@ -163,11 +161,13 @@ function scoresDisplay() {
   console.log(userInfo);
   // const highScore = userInfo.sort(a, b) => {
   //   retun a.score - b.score;
-  // }s
+  // }
   // console.log(byScore);
 
   //scoresContainerElement.classList.remove("hide");
 }
+
+function rtnQuizzeenater() {}
 
 function clearStatusClass(element) {
   element.classList.remove("correct");
