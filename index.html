@@ -25,13 +25,12 @@
 <body>
     <!-- <Header class="nav"> -->
     <!--Logo - home - scores-->
-    <button id="home-btn">Quizzeenater</button> <!--!add functionality no action in main page, bring home from scores page-->
-    <button id="scores-btn">Scores</button> <!--!add functionality take to scores page from main, no action in scores page -->
-
+    <button id="home-btn">Quizzeenater</button> <!--No fuctionality, originally created for second page fuction-->
+    <button id="scores-btn">Scores</button> 
     <!-- </Header> -->
 
     <div class="container">
-        <div class="timer">Quiz timer<span id="time">05:00</span> minutes!</div>
+        <div id="clock" class="timer" class="hide" >Quiz timer <span id="time"> 03:00 </span> minutes!</div>
 
         <div id="question-container" class="hide">
             <div id="question">Question</div>
@@ -42,16 +41,17 @@
                 <button class="btn">Answer 4</button>
             </div>
         </div>
+        <div id="scores-container" class="hide">
+            <h1>Player Scores</h1>
+            <span>Place Holder to call scores in list form</span>
+        </div>
         <div class="controls">
             <button id="start-btn" class="start-btn btn">Start</button>
             <button id="submit-btn" class="submit-btn btn hide">Submit</button>
+            <button id="return-btn" class="return-btn btn hide">Quizzeenater</button>
         </div>
     </div>
 
-    <!--Start button-->
-    <!--Question-->
-    <!--Answers-->
-    <!--Timer-->
     <footer></footer>
 
     <script src="js/javaScript.js"></script>

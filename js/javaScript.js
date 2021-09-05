@@ -4,12 +4,23 @@
 
 const startButton = document.getElementById("start-btn");
 const submitButton = document.getElementById("submit-btn");
+const scoresButton = document.getElementById("scores-btn");
+const returnButton = document.getElementById("return-btn");
 const questionContainerElement = document.getElementById("question-container");
+const scoresContainerElement = document.getElementById("scores-container");
+//const clock = document.getElementById("clock");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
 var scoreGame = 0;
 var interval;
 var timer;
+var typedName = [];
+var userInfo = [
+  {
+    name: typedName,
+    score: scoreGame,
+  },
+];
 
 let shuffledQuestions, currentQuestionIndex;
 
@@ -18,14 +29,18 @@ submitButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
+scoresButton.addEventListener("click", scoresDisplay);
+returnButton.addEventListener("click", rtnQuizzeenater);
 
 function startQuiz() {
-  var fiveMinutes = 60 * 5,
-    display = document.querySelector("#time");
-  startTimer(fiveMinutes, display);
+  var threeMinutes = 60 * 3,
+    display = document.querySelector(" #time ");
+  startTimer(threeMinutes, display);
 
   console.log("Started");
   startButton.classList.add("hide");
+  scoresContainerElement.classList.add("hide"); //! This may not go here if it errors
+
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
@@ -83,13 +98,11 @@ function resetState() {
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
+  //scoresContainerElement.classList.add("hide"); //! This may go here
 }
-//! create a button to show scores
-//!button hides current items and displays scores
-//!and then reverse
-//!remove.child
 
 function selectAnswer(e) {
+  console.log("selectAnswers");
   const selectButton = e.target;
   const correct = selectButton.dataset.correct;
   setStatusClass(document.body, correct);
@@ -100,14 +113,14 @@ function selectAnswer(e) {
     submitButton.classList.remove("hide");
   } else {
     clearInterval(interval);
-    alert("Your score is: " + scoreGame); //!Score alert
-    var x = getPlayerName(); //!Get player's name
-    highScore(x);
+    startButton.innerText = "Restart";
+    startButton.classList.remove("hide");
+    var typedName = getPlayerName();
+    alert(typedName + ", Your score is: " + scoreGame);
     alert(
       "You have completed the quiz, if you would like to do it again, hit restart!"
     );
-    startButton.innerText = "Restart";
-    startButton.classList.remove("hide");
+    storeScore();
   }
 }
 
@@ -130,6 +143,28 @@ var getPlayerName = function () {
   console.log("Player's name is " + name);
   return name;
 };
+
+//!Currently kind of working
+function storeScore() {
+  console.log("localStorage f() running");
+  localStorage.setItem("Score", JSON.stringify(userInfo));
+}
+
+function scoresDisplay() {
+  console.log("Display scores container");
+  //clock.classList.add("hide");
+  questionContainerElement.classList.add("hide");
+  startButton.innerText = "Quizzeenater again";
+  startButton.classList.remove("hide");
+  scoresContainerElement.classList.remove("hide");
+
+  //!Working on this one ----------------------------------------------------
+  //!Get the scores is next
+  //localStorage.getItem(highScore)
+  //scoresContainerElement.classList.remove("hide");
+}
+
+function rtnQuizzeenater() {}
 
 function clearStatusClass(element) {
   element.classList.remove("correct");
