@@ -127,9 +127,9 @@ body.wrong {
   right: 50px;
 }
 
-#home-btn:hover {
+/* #home-btn:hover {
   border-color: black;
-}
+} */
 
 #scores-btn:hover {
   border-color: black;

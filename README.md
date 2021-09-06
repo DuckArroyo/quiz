@@ -5,9 +5,28 @@ I used this video tutorial to develop the code. The creator also provides the co
 https://youtu.be/riDzcEQbX6k
 https://github.com/WebDevSimplified/JavaScript-Quiz-App
 
-Quizeenater
+##Quizeenater
 
-Challenge - user wwants a quiz to test their JavaScript fundamentals!
+##Notes
+The application is not finished but it is functioning.
+Non working parts
+
+- User name is not properly being stored in local storage.
+- User name is being overwritten after a retry
+- Cannot "getItem" from storage to display
+- Did not create items to display in scores page.
+
+Working parts
+
+- Quiz loops correctly
+- Quiz can be retaken
+- User name is asked and saved temporarily
+- Scores button works
+- Can return to quiz from Scores display
+- Timer starts on click, stops when quiz ends, resets for next quiz.
+- Questions can be easily updated to change quiz length
+
+Challenge - user wants a quiz to test their JavaScript fundamentals!
 
 Action items
 *Create HTML, CSS, JavaScript

@@ -15,12 +15,6 @@ var scoreGame = 0;
 var interval;
 var timer;
 var typedName = [];
-var userInfo = [
-  {
-    name: typedName,
-    score: scoreGame,
-  },
-];
 
 let shuffledQuestions, currentQuestionIndex;
 
@@ -144,26 +138,33 @@ var getPlayerName = function () {
   return name;
 };
 
-//!Currently kind of working
+//!Currently kind of working - name is not passing into function.
 function storeScore() {
+  var userInfo = [
+    {
+      name: typedName,
+      score: scoreGame,
+    },
+  ];
   console.log("localStorage f() running");
   localStorage.setItem("Score", JSON.stringify(userInfo));
 }
 
 function scoresDisplay() {
-  console.log("Display scores container");
+  console.log("Display scores container is active");
   //clock.classList.add("hide");
   questionContainerElement.classList.add("hide");
   startButton.innerText = "Quizzeenater again";
   startButton.classList.remove("hide");
   scoresContainerElement.classList.remove("hide");
-  localStorage.getItem(userInfo);
-  console.log(userInfo);
+  //! unable to finish - this portion was meant to get storage and then display
+  //var retrieveScore = localStorage.getItem(Score);
+  //console.log(retrieveScore);
+  //!Unable to finish - this portion was meant to sort the scores.
   // const highScore = userInfo.sort(a, b) => {
   //   retun a.score - b.score;
   // }
   // console.log(byScore);
-
   //scoresContainerElement.classList.remove("hide");
 }
 
