@@ -1,7 +1,3 @@
-//TODO Questions
-//TODO Answers
-//TODO set localStorage
-//TODO get localStorage
 // Use of const vs var - https://www.w3schools.com/js/js_const.asp
 // use of e.target https://developer.mozilla.org/en-US/docs/Web/API/Event/target
 //Timer https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
@@ -15,6 +11,8 @@ const nameButton = document.getElementById("#name-btn");
 const nameContainerElement = document.getElementById("#name-container");
 
 var scoreGame = 0;
+var interval;
+var timer;
 
 let shuffledQuestions, currentQuestionIndex;
 
@@ -27,6 +25,10 @@ submitButton.addEventListener("click", () => {
 });
 
 function startQuiz() {
+  var fiveMinutes = 60 * 5,
+    display = document.querySelector("#time");
+  startTimer(fiveMinutes, display);
+
   console.log("Started");
   startButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
@@ -35,12 +37,12 @@ function startQuiz() {
   setNextQuestion();
 }
 
-//TODO Timer
 function startTimer(duration, display) {
+  console.log(minutes, seconds);
   var timer = duration,
     minutes,
     seconds;
-  setInterval(function () {
+  interval = setInterval(function () {
     minutes = parseInt(timer / 60, 10);
     seconds = parseInt(timer % 60, 10);
 
@@ -54,13 +56,6 @@ function startTimer(duration, display) {
     }
   }, 1000);
 }
-
-window.onload = function () {
-  var fiveMinutes = 60 * 5,
-    display = document.querySelector("#time");
-  startTimer(fiveMinutes, display);
-};
-//TODO End timer
 
 function setNextQuestion() {
   console.log("Next Question");
@@ -76,7 +71,11 @@ function showQuestion(question) {
     button.classList.add("btn");
     if (answer.correct) {
       button.dataset.correct = answer.correct;
+      scoreGame++;
+    } else {
+      // timer -= 5 //! This is not working
     }
+
     button.addEventListener("click", selectAnswer);
     answerButtonsElement.appendChild(button);
   });
@@ -90,6 +89,10 @@ function resetState() {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
 }
+//! create a button to show scores
+//!button hides current items and displays scores
+//!and then reverse
+//!remove.child
 
 function selectAnswer(e) {
   const selectButton = e.target;
@@ -102,7 +105,8 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     submitButton.classList.remove("hide");
   } else {
-    alert("Your score is: " + score + " amount");
+    clearInterval(interval);
+    alert("Your score is: " + scoreGame);
     getPlayerName();
     alert(
       "You have completed the quiz, if you would like to do it again, hit restart!"
@@ -121,7 +125,6 @@ function setStatusClass(element, correct) {
   }
 }
 
-//todo get user ID
 var getPlayerName = function () {
   var name = document.getElementById("#name-input").value;
   //*************/
