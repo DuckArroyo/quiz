@@ -24,12 +24,14 @@ submitButton.addEventListener("click", () => {
   setNextQuestion();
 });
 scoresButton.addEventListener("click", scoresDisplay);
-returnButton.addEventListener("click", rtnQuizzeenater);
+//returnButton.addEventListener("click", rtnQuizzeenater);
 
 function startQuiz() {
   var threeMinutes = 60 * 3,
     display = document.querySelector(" #time ");
   startTimer(threeMinutes, display);
+  //set time
+  //question wrong -15
 
   console.log("Started");
   startButton.classList.add("hide");
@@ -41,6 +43,7 @@ function startQuiz() {
   setNextQuestion();
 }
 
+//!timer interval id - set interval call the end, 1000
 function startTimer(duration, display) {
   console.log(minutes, seconds);
   var timer = duration,
@@ -55,6 +58,8 @@ function startTimer(duration, display) {
 
     display.textContent = minutes + ":" + seconds;
 
+    //if question wrong display wrong and minutes 15.
+    //
     if (--timer < 0) {
       timer = duration;
     }
@@ -109,14 +114,19 @@ function selectAnswer(e) {
     clearInterval(interval);
     startButton.innerText = "Restart";
     startButton.classList.remove("hide");
-    var typedName = getPlayerName();
-    alert(typedName + ", Your score is: " + scoreGame);
-    alert(
-      "You have completed the quiz, if you would like to do it again, hit restart!"
-    );
+
     storeScore();
   }
 }
+
+//time checker
+//timerelement.time-- update content.
+//This will be constantly running.
+//if statement if timer === 0, end.
+//!From Mason
+//!!          timerEl = setInterval(clockTick, 1000)
+//timerEl.textContent = time
+//time = questions.length *15
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
@@ -140,14 +150,30 @@ var getPlayerName = function () {
 
 //!Currently kind of working - name is not passing into function.
 function storeScore() {
-  var userInfo = [
-    {
+  var typedName = getPlayerName();
+  alert(typedName + ", Your score is: " + scoreGame);
+  alert(
+    "You have completed the quiz, if you would like to do it again, hit restart!"
+  );
+
+  if (userInfo !== "") {
+    var userInfo = {
       name: typedName,
       score: scoreGame,
-    },
-  ];
-  console.log("localStorage f() running");
-  localStorage.setItem("Score", JSON.stringify(userInfo));
+    };
+    console.log(userInfo);
+    console.log("localStorage f() running");
+
+    var highScore = JSON.parse(localStorage.getItem("highScore")) || [];
+
+    console.log(highScore);
+
+    highScore.push(userInfo);
+
+    localStorage.setItem("highScore", JSON.stringify(highScore));
+
+    console.log(highScore);
+  }
 }
 
 function scoresDisplay() {
@@ -157,18 +183,19 @@ function scoresDisplay() {
   startButton.innerText = "Quizzeenater again";
   startButton.classList.remove("hide");
   scoresContainerElement.classList.remove("hide");
-  //! unable to finish - this portion was meant to get storage and then display
-  //var retrieveScore = localStorage.getItem(Score);
-  //console.log(retrieveScore);
-  //!Unable to finish - this portion was meant to sort the scores.
-  // const highScore = userInfo.sort(a, b) => {
-  //   retun a.score - b.score;
-  // }
-  // console.log(byScore);
-  //scoresContainerElement.classList.remove("hide");
-}
+  storeScore();
+  //Create an element to bgrab from local storage and display
+  //highScore might not register so it should go up to storeScore.
+  const retrieveScore = highScore.sort(max, min) => {
+    return max.score - min.score;
+  };
+  console.log(retrieveScore);
 
-function rtnQuizzeenater() {}
+  for(var i = 0, i<element.length; i++ ) {
+i = retrieveScore[0];
+  };
+  scoresContainerElement.classList.remove("hide");
+}
 
 function clearStatusClass(element) {
   element.classList.remove("correct");
@@ -186,50 +213,50 @@ const questions = [
     ],
   },
 
-  {
-    question: "How do you call a function?",
-    answers: [
-      { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
-      { text: "1-800-Function", correct: false },
-      { text: "Ask a BSC", correct: false },
-      { text: "nameOfFunction()", correct: false },
-    ],
-  },
-  {
-    question: "Types of data",
-    answers: [
-      { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
-      { text: "Nodes, Objects, Whole numbers", correct: false },
-      { text: "[], {}, ()", correct: false },
-      { text: "( i = 0; i < x.lenght; i-- )", correct: false },
-    ],
-  },
-  {
-    question: "Is JavaScript easy? 2",
-    answers: [
-      { text: "Yes", correct: true }, //true is specific to the correct answer
-      { text: "NOO!", correct: false },
-      { text: "Go Away!!", correct: false },
-      { text: "I will shank you", correct: false },
-    ],
-  },
+  // {
+  //   question: "How do you call a function?",
+  //   answers: [
+  //     { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
+  //     { text: "1-800-Function", correct: false },
+  //     { text: "Ask a BSC", correct: false },
+  //     { text: "nameOfFunction()", correct: false },
+  //   ],
+  // },
+  // {
+  //   question: "Types of data",
+  //   answers: [
+  //     { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
+  //     { text: "Nodes, Objects, Whole numbers", correct: false },
+  //     { text: "[], {}, ()", correct: false },
+  //     { text: "( i = 0; i < x.lenght; i-- )", correct: false },
+  //   ],
+  // },
+  // {
+  //   question: "Is JavaScript easy? 2",
+  //   answers: [
+  //     { text: "Yes", correct: true }, //true is specific to the correct answer
+  //     { text: "NOO!", correct: false },
+  //     { text: "Go Away!!", correct: false },
+  //     { text: "I will shank you", correct: false },
+  //   ],
+  // },
 
-  {
-    question: "How do you call a function? 2",
-    answers: [
-      { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
-      { text: "1-800-Function", correct: false },
-      { text: "Ask a BSC", correct: false },
-      { text: "nameOfFunction()", correct: false },
-    ],
-  },
-  {
-    question: "Types of data 2",
-    answers: [
-      { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
-      { text: "Nodes, Objects, Whole numbers", correct: false },
-      { text: "[], {}, ()", correct: false },
-      { text: "( i = 0; i < x.lenght; i-- )", correct: false },
-    ],
-  },
+  // {
+  //   question: "How do you call a function? 2",
+  //   answers: [
+  //     { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
+  //     { text: "1-800-Function", correct: false },
+  //     { text: "Ask a BSC", correct: false },
+  //     { text: "nameOfFunction()", correct: false },
+  //   ],
+  // },
+  // {
+  //   question: "Types of data 2",
+  //   answers: [
+  //     { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
+  //     { text: "Nodes, Objects, Whole numbers", correct: false },
+  //     { text: "[], {}, ()", correct: false },
+  //     { text: "( i = 0; i < x.lenght; i-- )", correct: false },
+  //   ],
+  // },
 ];

@@ -1,4 +1,12 @@
+# Status
+
+Code the scores display. Currenlty, the highScore variable is pulling the score from local storage.
+run highScore through a loop and print the iterations.
+
+Need to fix the time issue.
+
 # challenge4
+
 https://duckarroyo.github.io/challenge4/
 
 #EXTERNAL SOURCE USED FOR THIS PROJECT
