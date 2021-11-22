@@ -1,71 +1,43 @@
-# Status
+# Quiz ![GitHublicense](https://img.shields.io/npm/l/express?style=for-the-badge)
 
-Code the scores display. Currenlty, the highScore variable is pulling the score from local storage.
-run highScore through a loop and print the iterations.
+# UO Coding bootcamp Challenge 4
 
-Need to fix the time issue.
+## Links
 
-# challenge4
+Github Pages [Link](https://duckarroyo.github.io/challenge4/)
 
-https://duckarroyo.github.io/challenge4/
+Github Repository [Link](https://github.com/DuckArroyo/challenge4)
 
-#EXTERNAL SOURCE USED FOR THIS PROJECT
-I used this video tutorial to develop the code. The creator also provides the code in a repo, however, I typed my code along to the video and then modified it to meet the project requirements
-https://youtu.be/riDzcEQbX6k
-https://github.com/WebDevSimplified/JavaScript-Quiz-App
+## Description
 
-##Quizeenater
+This is a quiz application
 
-##Notes
-The application is not finished but it is functioning.
-Non working parts
+## Project Guidelines/Requirements
 
-- User name is not properly being stored in local storage.
-- User name is being overwritten after a retry
-- Cannot "getItem" from storage to display
-- Did not create items to display in scores page.
+None
 
-Working parts
+# Contributions by:
 
-- Quiz loops correctly
-- Quiz can be retaken
-- User name is asked and saved temporarily
-- Scores button works
-- Can return to quiz from Scores display
-- Timer starts on click, stops when quiz ends, resets for next quiz.
-- Questions can be easily updated to change quiz length
+DeveloperDuckArroyo
 
-Challenge - user wants a quiz to test their JavaScript fundamentals!
+[Portfolio](https://duckarroyo.github.io/challenge2/)
 
-Action items
-*Create HTML, CSS, JavaScript
-*create layout
-create framework for game
+[GitHub](https://github.com/DuckArroyo)
 
-- clock starts when question starts
-- question requires input - validate input
-- input needs to be verified correct or incorrect
-- store score in localstorage
+[Twitter @DevDuckArroyo](https://twitter.com/DevDuckArroyo)
 
-Requirements from Acceptance Criteria
+[LinkeIn](https://www.linkedin.com/in/duckarroyo/)
 
-1. Start button
-2. On Start timer starts and question displays.
-3. User enters input
-4. - not requested, provide visual feedback Correct/Incorrect
-5. When question is answered correctly - add to score
-6. When question is answered incorrectly - remove time from clock
-7. User provides initials for score
+[CodePen](https://codepen.io/DeveloperDuckArroyo)
 
-#Acceptance Criteria
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+# Screnshots
+
+<img src="./screenshots/a.png" style="width: 400px">
+
+<img src="./screenshots/b.png" style="width: 400px">
+
+<img src="./screenshots/c.png" style="width: 400px">
+
+<img src="./screenshots/d.png" style="width: 400px">
+
+<img src="./screenshots/e.png" style="width: 400px">
