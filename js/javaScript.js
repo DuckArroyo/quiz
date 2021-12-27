@@ -1,73 +1,32 @@
-// Use of const vs var - https://www.w3schools.com/js/js_const.asp
-// use of e.target https://developer.mozilla.org/en-US/docs/Web/API/Event/target
-//Timer https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
-
-const startButton = document.getElementById("start-btn");
-const submitButton = document.getElementById("submit-btn");
-const scoresButton = document.getElementById("scores-btn");
-const returnButton = document.getElementById("return-btn");
-const questionContainerElement = document.getElementById("question-container");
-const scoresContainerElement = document.getElementById("scores-container");
-//const clock = document.getElementById("clock");
-const questionElement = document.getElementById("question");
-const answerButtonsElement = document.getElementById("answer-buttons");
+const startButton = document.getElementById('start-btn');
+const submitButton = document.getElementById('submit-btn');
+const scoresButton = document.getElementById('scores-btn');
+const returnButton = document.getElementById('return-btn');
+const questionContainerElement = document.getElementById('question-container');
+const scoresContainerElement = document.getElementById('scores-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
 var scoreGame = 0;
-var interval;
-var timer;
-var typedName = [];
 
 let shuffledQuestions, currentQuestionIndex;
 
-startButton.addEventListener("click", startQuiz);
-submitButton.addEventListener("click", () => {
+startButton.addEventListener('click', startQuiz);
+submitButton.addEventListener('click', () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
-scoresButton.addEventListener("click", scoresDisplay);
-//returnButton.addEventListener("click", rtnQuizzeenater);
 
 function startQuiz() {
-  var threeMinutes = 60 * 3,
-    display = document.querySelector(" #time ");
-  startTimer(threeMinutes, display);
-  //set time
-  //question wrong -15
-
-  console.log("Started");
-  startButton.classList.add("hide");
-  scoresContainerElement.classList.add("hide"); //! This may not go here if it errors
-
+  console.log('Started');
+  startButton.classList.add('hide');
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
-  questionContainerElement.classList.remove("hide");
+  questionContainerElement.classList.remove('hide');
   setNextQuestion();
 }
 
-//!timer interval id - set interval call the end, 1000
-function startTimer(duration, display) {
-  console.log(minutes, seconds);
-  var timer = duration,
-    minutes,
-    seconds;
-  interval = setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    display.textContent = minutes + ":" + seconds;
-
-    //if question wrong display wrong and minutes 15.
-    //
-    if (--timer < 0) {
-      timer = duration;
-    }
-  }, 1000);
-}
-
 function setNextQuestion() {
-  console.log("Next Question");
+  console.log('Next Question');
   resetState();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
 }
@@ -75,33 +34,32 @@ function setNextQuestion() {
 function showQuestion(question) {
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
-    const button = document.createElement("button");
+    const button = document.createElement('button');
     button.innerText = answer.text;
-    button.classList.add("btn");
+    button.classList.add('btn');
     if (answer.correct) {
       button.dataset.correct = answer.correct;
       scoreGame++;
     } else {
-      // timer -= 5 //! This is not working
+      scoreGame--;
     }
 
-    button.addEventListener("click", selectAnswer);
+    button.addEventListener('click', selectAnswer);
     answerButtonsElement.appendChild(button);
   });
 }
 
 function resetState() {
-  console.log("resetState");
+  console.log('resetState');
   clearStatusClass(document.body);
-  submitButton.classList.add("hide");
+  submitButton.classList.add('hide');
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
-  //scoresContainerElement.classList.add("hide"); //! This may go here
 }
 
 function selectAnswer(e) {
-  console.log("selectAnswers");
+  console.log('selectAnswers');
   const selectButton = e.target;
   const correct = selectButton.dataset.correct;
   setStatusClass(document.body, correct);
@@ -109,154 +67,81 @@ function selectAnswer(e) {
     setStatusClass(button, button.dataset.correct);
   });
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    submitButton.classList.remove("hide");
+    submitButton.classList.remove('hide');
   } else {
-    clearInterval(interval);
-    startButton.innerText = "Restart";
-    startButton.classList.remove("hide");
-
-    storeScore();
+    startButton.innerText = 'Restart';
+    startButton.classList.remove('hide');
   }
 }
-
-//time checker
-//timerelement.time-- update content.
-//This will be constantly running.
-//if statement if timer === 0, end.
-//!From Mason
-//!!          timerEl = setInterval(clockTick, 1000)
-//timerEl.textContent = time
-//time = questions.length *15
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct) {
-    element.classList.add("correct");
+    element.classList.add('correct');
   } else {
-    element.classList.add("wrong");
+    element.classList.add('wrong');
   }
-}
-
-var getPlayerName = function () {
-  var name = "";
-  //*************/
-  while (name === "" || name === null) {
-    name = prompt("What is your name?");
-  }
-  //*************/
-  console.log("Player's name is " + name);
-  return name;
-};
-
-//!Currently kind of working - name is not passing into function.
-function storeScore() {
-  var typedName = getPlayerName();
-  alert(typedName + ", Your score is: " + scoreGame);
-  alert(
-    "You have completed the quiz, if you would like to do it again, hit restart!"
-  );
-
-  if (userInfo !== "") {
-    var userInfo = {
-      name: typedName,
-      score: scoreGame,
-    };
-    console.log(userInfo);
-    console.log("localStorage f() running");
-
-    var highScore = JSON.parse(localStorage.getItem("highScore")) || [];
-
-    console.log(highScore);
-
-    highScore.push(userInfo);
-
-    localStorage.setItem("highScore", JSON.stringify(highScore));
-
-    console.log(highScore);
-  }
-}
-
-function scoresDisplay() {
-  console.log("Display scores container is active");
-  //clock.classList.add("hide");
-  questionContainerElement.classList.add("hide");
-  startButton.innerText = "Quizzeenater again";
-  startButton.classList.remove("hide");
-  scoresContainerElement.classList.remove("hide");
-  storeScore();
-  //Create an element to bgrab from local storage and display
-  //highScore might not register so it should go up to storeScore.
-  const retrieveScore = highScore.sort(max, min) => {
-    return max.score - min.score;
-  };
-  console.log(retrieveScore);
-
-  for(var i = 0, i<element.length; i++ ) {
-i = retrieveScore[0];
-  };
-  scoresContainerElement.classList.remove("hide");
 }
 
 function clearStatusClass(element) {
-  element.classList.remove("correct");
-  element.classList.remove("wrong");
+  element.classList.remove('correct');
+  element.classList.remove('wrong');
 }
 
 const questions = [
   {
-    question: "Is JavaScript easy?",
+    question: 'Is JavaScript easy?',
     answers: [
-      { text: "Yes", correct: true }, //true is specific to the correct answer
-      { text: "NOO!", correct: false },
-      { text: "Go Away!!", correct: false },
-      { text: "I will shank you", correct: false },
+      { text: 'Yes', correct: true }, //true is specific to the correct answer
+      { text: 'NOO!', correct: false },
+      { text: 'Go Away!!', correct: false },
+      { text: 'I will shank you', correct: false },
+    ],
+  },
+  {
+    question: 'How do you call a function?',
+    answers: [
+      { text: 'function nameOfFunction()', correct: true }, //true is specific to the correct answer
+      { text: '1-800-Function', correct: false },
+      { text: 'Ask a BSC', correct: false },
+      { text: 'nameOfFunction()', correct: false },
+    ],
+  },
+  {
+    question: 'Types of data',
+    answers: [
+      { text: 'Strings, Boleans, Intergers', correct: true }, //true is specific to the correct answer
+      { text: 'Nodes, Objects, Whole numbers', correct: false },
+      { text: '[], {}, ()', correct: false },
+      { text: '( i = 0; i < x.lenght; i-- )', correct: false },
+    ],
+  },
+  {
+    question: 'Is JavaScript easy? 2',
+    answers: [
+      { text: 'Yes', correct: true }, //true is specific to the correct answer
+      { text: 'NOO!', correct: false },
+      { text: 'Go Away!!', correct: false },
+      { text: 'I will shank you', correct: false },
     ],
   },
 
-  // {
-  //   question: "How do you call a function?",
-  //   answers: [
-  //     { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
-  //     { text: "1-800-Function", correct: false },
-  //     { text: "Ask a BSC", correct: false },
-  //     { text: "nameOfFunction()", correct: false },
-  //   ],
-  // },
-  // {
-  //   question: "Types of data",
-  //   answers: [
-  //     { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
-  //     { text: "Nodes, Objects, Whole numbers", correct: false },
-  //     { text: "[], {}, ()", correct: false },
-  //     { text: "( i = 0; i < x.lenght; i-- )", correct: false },
-  //   ],
-  // },
-  // {
-  //   question: "Is JavaScript easy? 2",
-  //   answers: [
-  //     { text: "Yes", correct: true }, //true is specific to the correct answer
-  //     { text: "NOO!", correct: false },
-  //     { text: "Go Away!!", correct: false },
-  //     { text: "I will shank you", correct: false },
-  //   ],
-  // },
-
-  // {
-  //   question: "How do you call a function? 2",
-  //   answers: [
-  //     { text: "function nameOfFunction()", correct: true }, //true is specific to the correct answer
-  //     { text: "1-800-Function", correct: false },
-  //     { text: "Ask a BSC", correct: false },
-  //     { text: "nameOfFunction()", correct: false },
-  //   ],
-  // },
-  // {
-  //   question: "Types of data 2",
-  //   answers: [
-  //     { text: "Strings, Boleans, Intergers", correct: true }, //true is specific to the correct answer
-  //     { text: "Nodes, Objects, Whole numbers", correct: false },
-  //     { text: "[], {}, ()", correct: false },
-  //     { text: "( i = 0; i < x.lenght; i-- )", correct: false },
-  //   ],
-  // },
+  {
+    question: 'How do you call a function? 2',
+    answers: [
+      { text: 'function nameOfFunction()', correct: true }, //true is specific to the correct answer
+      { text: '1-800-Function', correct: false },
+      { text: 'Ask a BSC', correct: false },
+      { text: 'nameOfFunction()', correct: false },
+    ],
+  },
+  {
+    question: 'Types of data 2',
+    answers: [
+      { text: 'Strings, Boleans, Intergers', correct: true }, //true is specific to the correct answer
+      { text: 'Nodes, Objects, Whole numbers', correct: false },
+      { text: '[], {}, ()', correct: false },
+      { text: '( i = 0; i < x.lenght; i-- )', correct: false },
+    ],
+  },
 ];
