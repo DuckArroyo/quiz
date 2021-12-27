@@ -42,3 +42,15 @@ DeveloperDuckArroyo
 I used this video tutorial to develop the code. The creator also provides the code in a repo, however, I typed my code along to the video and then modified it to meet the project requirements
 https://youtu.be/riDzcEQbX6k
 https://github.com/WebDevSimplified/JavaScript-Quiz-App
+
+# Screnshots
+
+<img src="./screenshots/a.png" style="width: 400px">
+
+<img src="./screenshots/b.png" style="width: 400px">
+
+<img src="./screenshots/c.png" style="width: 400px">
+
+<img src="./screenshots/d.png" style="width: 400px">
+
+<img src="./screenshots/e.png" style="width: 400px">
