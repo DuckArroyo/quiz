@@ -1,12 +1,9 @@
 const startButton = document.getElementById('start-btn');
 const submitButton = document.getElementById('submit-btn');
-const scoresButton = document.getElementById('scores-btn');
-const returnButton = document.getElementById('return-btn');
 const questionContainerElement = document.getElementById('question-container');
 const scoresContainerElement = document.getElementById('scores-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
-var scoreGame = 0;
 
 let shuffledQuestions, currentQuestionIndex;
 
@@ -17,7 +14,7 @@ submitButton.addEventListener('click', () => {
 });
 
 function startQuiz() {
-  console.log('Started');
+  console.log('Quiz started');
   startButton.classList.add('hide');
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
@@ -59,7 +56,7 @@ function resetState() {
 }
 
 function selectAnswer(e) {
-  console.log('selectAnswers');
+  console.log('selectAnswer');
   const selectButton = e.target;
   const correct = selectButton.dataset.correct;
   setStatusClass(document.body, correct);
@@ -87,6 +84,7 @@ function clearStatusClass(element) {
   element.classList.remove('correct');
   element.classList.remove('wrong');
 }
+
 
 const questions = [
   {
